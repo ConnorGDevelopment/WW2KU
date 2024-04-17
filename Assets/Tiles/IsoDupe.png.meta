@@ -1,0 +1,199 @@
+fileFormatVersion: 2
+guid: 1377fa5039c6162408355ffb94f7047d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Half Highlight
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 217
+        width: 30
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e378fdab1ba96104b85dce488a416104
+      internalID: 1271478605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Floor - Green: -1642134855
+      Floor - Orange: -1250673772
+      Floor - White: -1576241359
+      Full Block - Green: 3687094
+      Full Block - Orange: 411903003
+      Full Block - White: -717053121
+      Full Ramp - BL - Green: 1237318459
+      Full Ramp - BL - Orange: -991090242
+      Full Ramp - BL - White: 173566867
+      Full Ramp - BR - Green: -1758662984
+      Full Ramp - BR - Orange: -15762785
+      Full Ramp - BR - White: -1760804523
+      Full Ramp - TL - Green: 1784000118
+      Full Ramp - TL - Orange: 1070778494
+      Full Ramp - TL - White: 198328628
+      Full Ramp - TR - Green: 280829595
+      Full Ramp - TR - Orange: -2142156154
+      Full Ramp - TR - White: -15817497
+      Full Stairs - TL - Green: -356474922
+      Full Stairs - TL - Orange: 1915174812
+      Full Stairs - TL - White: -695694582
+      Full Stairs - TR - Green: -816286053
+      Full Stairs - TR - Orange: 33242636
+      Full Stairs - TR - White: 637719712
+      Full Wall - BL - Green: -268622956
+      Full Wall - BL - Orange: 1001491416
+      Full Wall - BL - White: 963251740
+      Full Wall - BR - Green: -129744949
+      Full Wall - BR - Orange: -1482360963
+      Full Wall - BR - White: 1734731151
+      Full Wall - TL - Green: -1778726680
+      Full Wall - TL - Orange: -2076074932
+      Full Wall - TL - White: 1078813270
+      Full Wall - TR - Green: 213507597
+      Full Wall - TR - Orange: -2086018257
+      Full Wall - TR - White: -1266277787
+      Half Block - Green: -1700753693
+      Half Block - Orange: 1370102424
+      Half Block - White: 1868930061
+      Half Corner - Orange: 164095572
+      Half Highlight: 1271478605
+      Quarter Block - All - Water: 1119860781
+      Quarter Block - BL - Water: 1582022421
+      Quarter Block - BR - Water: 1731212932
+      Quarter Block - Green: 705115235
+      Quarter Block - None - Water: -949275492
+      Quarter Block - Orange: -1878317284
+      Quarter Block - White: 2038174060
+      Quarter Corner - Orange: -342024505
+      isometric-sandbox-sheet_0: 268021060
+      isometric-sandbox-sheet_1: 430376923
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
