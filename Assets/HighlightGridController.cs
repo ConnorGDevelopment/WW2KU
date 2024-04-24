@@ -5,76 +5,118 @@ using UnityEngine.Tilemaps;
 
 public class HighlightGridController : MonoBehaviour
 {
-    private Tilemap _tilemap;
+    public Tilemap HighlightTilemap { get; private set; }
 
     private Orchestrator _orch;
 
-    public Tile HighlightTile;
+    public Tile MovementTile;
+    public Tile AttackTile;
 
     void Start()
     {
-        _tilemap = gameObject.GetComponent<Tilemap>();
+        HighlightTilemap = gameObject.GetComponent<Tilemap>();
         _orch = GameObject.FindWithTag("Orch").GetComponent<Orchestrator>();
-        _orch.PawnSelected.AddListener(HighlightPawnMovement);
+        _orch.PawnSelected.AddListener(HighlightPawn);
+        _orch.PawnDeselected.AddListener(ClearHighlight);
+        _orch.TileDeselected.AddListener(ClearHighlight);
+        _orch.CardDeselected.AddListener(ClearHighlight);
+        _orch.CardSelected.AddListener(HighlightPawn);
     }
 
-    public void Highlight(Vector2 cellCenter)
+    private void Highlight(Vector3Int cellPosition, Tile tileToUse)
     {
-        Vector3Int cellPosition = _tilemap.WorldToCell(cellCenter);
-        _tilemap.SetTile(cellPosition, HighlightTile);
-    }
-    // This is an overload, basically means you can call this function with either a Vector2 or a Vector3Int and it'll work
-    public void Highlight(Vector3Int cellPosition)
-    {
-        _tilemap.SetTile(cellPosition, HighlightTile);
+        HighlightTilemap.SetTile(cellPosition, tileToUse);
     }
 
-    public void ClearHighlight()
+    private void ClearHighlight()
     {
-        _tilemap.ClearAllTiles();
+        HighlightTilemap.ClearAllTiles();
     }
 
-    public void HighlightPawnMovement()
+    private void HighlightPawn()
+    {
+        if (_orch.SelectedCard)
+        {
+            HighlightPawnAttack();
+        }
+        else
+        {
+            HighlightPawnMovement();
+        }
+    }
+
+    private void HighlightPawnMovement()
     {
         Pawn pawn = _orch.SelectedPawn;
 
         if (pawn)
         {
-            Vector3Int pawnPosition = _tilemap.WorldToCell(pawn.transform.position);
+            Vector3Int pawnPosition = HighlightTilemap.WorldToCell(pawn.transform.position);
 
             // If pawn has movement, highlight tiles in each direction
             if (pawn.movement > 0)
             {
                 // There should be a better way to do this, but a lot of the methods available suck
-                for (int i = 1; i <= pawn.movement; i++)
+                for (int x = 1; x <= pawn.movement; x++)
                 {
-                    Vector3Int deltaX = new(i, 0, 0);
-                    Vector3Int deltaY = new(0, i, 0);
-
-                    // Cardinal Movement
-                    Highlight(pawnPosition + deltaX);
-                    Highlight(pawnPosition - deltaX);
-                    Highlight(pawnPosition + deltaY);
-                    Highlight(pawnPosition - deltaY);
-
-                    // Diagonal Movement
-                    // Highlight(pawnPosition + deltaX + deltaY);
-                    // Highlight(pawnPosition + deltaX - deltaY);
-                    // Highlight(pawnPosition - deltaX + deltaY);
-                    // Highlight(pawnPosition - deltaX - deltaY);
-
-                    // Diagonal Positions w/o Diagonal Movement
-                    Vector3Int deltaDiagX = new(i, i - 1, 0);
-                    Vector3Int deltaDiagY = new(i - 1, i, 0);
-                    Highlight(pawnPosition + deltaDiagX);
-                    Highlight(pawnPosition - deltaDiagX);
-                    Highlight(pawnPosition + deltaDiagY);
-                    Highlight(pawnPosition - deltaDiagY);
-
+                    for (int y = 0; y <= x; y++)
+                    {
+                        Vector3Int delta = new(x - y, y, 0);
+                        Highlight(pawnPosition + (delta * new Vector3Int(1, 1, 0)), MovementTile);
+                        Highlight(pawnPosition + (delta * new Vector3Int(-1, 1, 0)), MovementTile);
+                        Highlight(pawnPosition + (delta * new Vector3Int(-1, -1, 0)), MovementTile);
+                        Highlight(pawnPosition + (delta * new Vector3Int(1, -1, 0)), MovementTile);
+                    }
                 }
             }
         }
+    }
+
+    private void HighlightPawnAttack()
+    {
+        Pawn pawn = _orch.SelectedPawn;
+
+        if (pawn)
+        {
+            Vector3Int pawnPosition = HighlightTilemap.WorldToCell(pawn.transform.position);
+
+            for (int x = 1; x <= _orch.SelectedCard.cardData.range; x++)
+            {
+                for (int y = 0; y <= x; y++)
+                {
+                    Vector3Int delta = new(x - y, y, 0);
+                    Highlight(pawnPosition + (delta * new Vector3Int(1, 1, 0)), AttackTile);
+                    Highlight(pawnPosition + (delta * new Vector3Int(-1, 1, 0)), AttackTile);
+                    Highlight(pawnPosition + (delta * new Vector3Int(-1, -1, 0)), AttackTile);
+                    Highlight(pawnPosition + (delta * new Vector3Int(1, -1, 0)), AttackTile);
+                }
+            }
+        }
+    }
+
+    public bool IsTileHighlighted(Vector3 cords)
+    {
+        var _cellPosition = HighlightTilemap.WorldToCell(cords);
 
 
+        if (HighlightTilemap.HasTile(_cellPosition))
+        {
+            return HighlightTilemap.GetTile(_cellPosition) == MovementTile;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void OnMouseDown()
+    {
+        Debug.Log($"HighlightGrid: Tile {Input.mousePosition} selected");
+        var cords = _orch.MainCam.ScreenToWorldPoint(Input.mousePosition);
+        cords.z = 0;
+        if (IsTileHighlighted(cords))
+        {
+            _orch.SelectTile(cords);
+        }
     }
 }

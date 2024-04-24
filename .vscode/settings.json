@@ -56,5 +56,8 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "WW2KU.sln"
+    "dotnet.defaultSolution": "WW2KU.sln",
+    "cSpell.words": [
+        "Scriptable"
+    ]
 }
