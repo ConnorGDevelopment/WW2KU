@@ -42,6 +42,7 @@ public partial class Orchestrator : MonoBehaviour
         // _selectPreview = GameObject.FindWithTag("SelectPreview").GetComponent<Image>();
         _highlightGrid = GameObject.FindWithTag("HighlightGrid").GetComponent<HighlightGridController>();
         MainCam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+        PawnMoved.AddListener(DeselectPawn);
     }
 
     // Apparently its important to destroy event listeners when you're done with a thing, prevents memory leaks

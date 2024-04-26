@@ -11,10 +11,7 @@ public partial class Orchestrator
         {
             // Remove all listeners, then change value
             // I don't know if this is needed, but its safe
-            if (_selectedPawn)
-            {
-                _selectedPawn.PawnMoved.RemoveAllListeners();
-            }
+
 
             _selectedPawn = value;
 
@@ -22,8 +19,6 @@ public partial class Orchestrator
             if (value)
             {
                 Debug.Log($"Orch: Pawn {_selectedPawn.pawnName} selected");
-                _selectedPawn.PawnMoved.AddListener(DeselectPawn);
-
             }
 
 
@@ -32,6 +27,7 @@ public partial class Orchestrator
 
     public UnityEvent PawnSelected = new();
     public UnityEvent PawnDeselected = new();
+    public UnityEvent PawnMoved = new();
 
     public void SelectPawn(Pawn pawn)
     {
@@ -67,6 +63,7 @@ public partial class Orchestrator
     {
         if (SelectedPawn)
         {
+            Debug.Log($"Orch: Pawn {SelectedPawn.pawnName} deselected");
             SelectedPawn = null;
             PawnDeselected.Invoke();
         }
