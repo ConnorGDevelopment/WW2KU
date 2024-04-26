@@ -1,0 +1,9 @@
+WTFAILA - What the fuck am I looking at?
+In my comments, I'll leave these in places where I do or use some non-intuitive/advanced/complex shit
+I'll do my best to describe how and why I am doing that thing
+I hope it is helpful, worst-case scenario is it shaves some time off your google searching
+In general, I try to avoid doing stuff like this unless its for a good reason
+
+A good rule of thumb though is to always code like you'll have to hand it to someone else, even on solo projects.
+Because it is essential to always remember this sacred programming proverb: 
+"When the code was written, only god and I knew how it worked. In 6 months, it will be god alone"

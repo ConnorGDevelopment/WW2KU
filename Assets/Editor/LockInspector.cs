@@ -8,4 +8,6 @@ static class EditorMenus
         ActiveEditorTracker.sharedTracker.isLocked = !ActiveEditorTracker.sharedTracker.isLocked;
         ActiveEditorTracker.sharedTracker.ForceRebuild();
     }
+
+
 }
