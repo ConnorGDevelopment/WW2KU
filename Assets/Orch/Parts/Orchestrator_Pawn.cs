@@ -18,10 +18,8 @@ public partial class Orchestrator
             // If Pawn, not null, log and add listeners (each Pawn is separate)
             if (value)
             {
-                Debug.Log($"Orch: Pawn {_selectedPawn.pawnName} selected");
+                Debug.Log($"Orch: Pawn {_selectedPawn.PawnName} selected");
             }
-
-
         }
     }
 
@@ -56,17 +54,15 @@ public partial class Orchestrator
             // This basically shouts and anything with a listener attached to this event will do its thing
             PawnSelected.Invoke();
         }
-
     }
 
     private void DeselectPawn()
     {
         if (SelectedPawn)
         {
-            Debug.Log($"Orch: Pawn {SelectedPawn.pawnName} deselected");
+            Debug.Log($"Orch: Pawn {SelectedPawn.PawnName} deselected");
             SelectedPawn = null;
             PawnDeselected.Invoke();
         }
-
     }
 }

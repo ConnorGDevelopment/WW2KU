@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class HighlightGridController : MonoBehaviour
 {
-    public Tilemap HighlightTilemap { get; private set; }
+    public Tilemap Tilemap { get; private set; }
 
     private Orchestrator _orch;
 
@@ -14,7 +14,7 @@ public class HighlightGridController : MonoBehaviour
 
     void Start()
     {
-        HighlightTilemap = gameObject.GetComponent<Tilemap>();
+        Tilemap = gameObject.GetComponent<Tilemap>();
         _orch = GameObject.FindWithTag("Orch").GetComponent<Orchestrator>();
         _orch.PawnSelected.AddListener(HighlightPawn);
         _orch.PawnDeselected.AddListener(ClearHighlight);
@@ -25,12 +25,12 @@ public class HighlightGridController : MonoBehaviour
 
     private void Highlight(Vector3Int cellPosition, Tile tileToUse)
     {
-        HighlightTilemap.SetTile(cellPosition, tileToUse);
+        Tilemap.SetTile(cellPosition, tileToUse);
     }
 
     private void ClearHighlight()
     {
-        HighlightTilemap.ClearAllTiles();
+        Tilemap.ClearAllTiles();
     }
 
     private void HighlightPawn()
@@ -51,13 +51,13 @@ public class HighlightGridController : MonoBehaviour
 
         if (pawn)
         {
-            Vector3Int pawnPosition = HighlightTilemap.WorldToCell(pawn.transform.position);
+            Vector3Int pawnPosition = Tilemap.WorldToCell(pawn.transform.position);
 
             // If pawn has movement, highlight tiles in each direction
-            if (pawn.movement > 0)
+            if (pawn.Movement > 0)
             {
                 // There should be a better way to do this, but a lot of the methods available suck
-                for (int x = 1; x <= pawn.movement; x++)
+                for (int x = 1; x <= pawn.Movement; x++)
                 {
                     for (int y = 0; y <= x; y++)
                     {
@@ -78,9 +78,9 @@ public class HighlightGridController : MonoBehaviour
 
         if (pawn)
         {
-            Vector3Int pawnPosition = HighlightTilemap.WorldToCell(pawn.transform.position);
+            Vector3Int pawnPosition = Tilemap.WorldToCell(pawn.transform.position);
 
-            for (int x = 1; x <= _orch.SelectedCard.cardData.range; x++)
+            for (int x = 1; x <= _orch.SelectedCard.CardData.Range; x++)
             {
                 for (int y = 0; y <= x; y++)
                 {
@@ -94,14 +94,13 @@ public class HighlightGridController : MonoBehaviour
         }
     }
 
-    public bool IsTileHighlighted(Vector3 cords)
+    public bool IsHighlighted(Vector3 cords)
     {
-        var _cellPosition = HighlightTilemap.WorldToCell(cords);
+        var _cellPosition = Tilemap.WorldToCell(cords);
 
-
-        if (HighlightTilemap.HasTile(_cellPosition))
+        if (Tilemap.HasTile(_cellPosition))
         {
-            return HighlightTilemap.GetTile(_cellPosition) == MovementTile;
+            return Tilemap.GetTile(_cellPosition) == MovementTile;
         }
         else
         {
@@ -114,7 +113,7 @@ public class HighlightGridController : MonoBehaviour
         Debug.Log($"HighlightGrid: Tile {Input.mousePosition} selected");
         var cords = _orch.MainCam.ScreenToWorldPoint(Input.mousePosition);
         cords.z = 0;
-        if (IsTileHighlighted(cords))
+        if (IsHighlighted(cords))
         {
             _orch.SelectTile(cords);
         }

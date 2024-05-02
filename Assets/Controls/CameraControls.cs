@@ -8,17 +8,15 @@ using UnityEngine.UI;
 public class CameraControls : MonoBehaviour
 {
     private CharacterController _characterController;
-    public float panSpeed = 5.0f;
-    private Vector2 panInput = Vector2.zero;
+    public float PanSpeed = 5.0f;
+    private Vector2 PanInput = Vector2.zero;
 
     private Orchestrator _orch;
 
     public void MovePlayer(InputAction.CallbackContext ctx)
     {
-        panInput = ctx.ReadValue<Vector2>();
+        PanInput = ctx.ReadValue<Vector2>();
     }
-
-
 
     public void Select(InputAction.CallbackContext ctx)
     {
@@ -36,7 +34,7 @@ public class CameraControls : MonoBehaviour
             // The C# modifier out basically spits whatever its modifying out into the scope as a var
             if (hit.collider.TryGetComponent(out Pawn pawn))
             {
-                pawn.GotClicked();
+                pawn.OnSelect();
             }
 
             // If the hit has the TilemapCollider2D comp AKA the tilemap
@@ -48,7 +46,6 @@ public class CameraControls : MonoBehaviour
                 _orch.SelectTile(hit.point);
             }
         }
-
     }
 
     void Start()
@@ -61,7 +58,6 @@ public class CameraControls : MonoBehaviour
 
     void FixedUpdate()
     {
-        _characterController.Move(panSpeed * Time.deltaTime * panInput);
+        _characterController.Move(PanSpeed * Time.deltaTime * PanInput);
     }
-
 }

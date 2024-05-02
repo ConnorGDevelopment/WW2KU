@@ -10,6 +10,7 @@ public partial class Orchestrator
         get { return _selectedCard; }
         set { _selectedCard = value; }
     }
+
     public void SelectCard(Card card)
     {
         if (SelectedCard)
@@ -20,7 +21,7 @@ public partial class Orchestrator
             }
             else
             {
-                Debug.Log($"Orch: Card {card.cardData.name} selected");
+                Debug.Log($"Orch: Card {card.CardData.name} selected");
 
                 DeselectTile();
                 SelectedCard = card;
@@ -29,14 +30,14 @@ public partial class Orchestrator
         }
         else
         {
-            Debug.Log($"Orch: Card {card.cardData.name} selected");
+            Debug.Log($"Orch: Card {card.CardData.name} selected");
 
             DeselectTile();
             SelectedCard = card;
             CardSelected.Invoke();
         }
-
     }
+
     public void DeselectCard()
     {
         Debug.Log($"Orch: Card deselected");

@@ -19386,7 +19386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3810f61d2a8c394a9d7b31347756c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardData: {fileID: 11400000, guid: 52c51834d17103a40bfc074a9246caa4, type: 2}
+  CardData: {fileID: 0}
 --- !u!114 &931470416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19790,10 +19790,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23af9aaec89c0b046ab08f75fba0e764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pawnName: Blimmy
-  movement: 4
-  health: 20
-  highlightMaterial: {fileID: 0}
+  PawnName: 
+  Movement: 0
+  Health: 20
+  HighlightMaterial: {fileID: 0}
 --- !u!61 &1288423576
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20582,10 +20582,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23af9aaec89c0b046ab08f75fba0e764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pawnName: Jimmy
-  movement: 4
-  health: 20
-  highlightMaterial: {fileID: -876546973899608171, guid: 3d77d00af775e9a43bf1a3b9d217e11b, type: 3}
+  PawnName: 
+  Movement: 0
+  Health: 20
+  HighlightMaterial: {fileID: 0}
 --- !u!61 &1440112631
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21073,7 +21073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee89d0ad5a9e8c4da6d13bcb164cd81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panSpeed: 5
+  PanSpeed: 5
 --- !u!143 &1583014121
 CharacterController:
   m_ObjectHideFlags: 0

@@ -22,26 +22,26 @@ public partial class Orchestrator
         {
             if (value.HasValue)
             {
-                var cellPosition = _highlightGrid.HighlightTilemap.WorldToCell((Vector3)value);
-                _selectedTile = _highlightGrid.HighlightTilemap.GetCellCenterWorld(cellPosition);
+                var cellPosition = _highlightGrid.Tilemap.WorldToCell((Vector3)value);
+                _selectedTile = _highlightGrid.Tilemap.GetCellCenterWorld(cellPosition);
                 Debug.Log($"Orch: Tile {_selectedTile.Value} selected");
             }
-
         }
     }
 
     public void SelectTile(Vector3 cords)
     {
-
         SelectedTile = cords;
         // If a Pawn is currently selected and a tile is clicked
         if (SelectedCard && SelectedPawn && SelectedTile.HasValue)
         {
-            Debug.Log($"Orch: Pawn {SelectedPawn.pawnName} attacking Tile {SelectedTile.Value} with ${SelectedCard}");
+            Debug.Log(
+                $"Orch: Pawn {SelectedPawn.PawnName} attacking Tile {SelectedTile.Value} with ${SelectedCard}"
+            );
         }
         else if (SelectedPawn && SelectedTile.HasValue)
         {
-            Debug.Log($"Orch: Pawn {SelectedPawn.pawnName} going to Tile {SelectedTile.Value}");
+            Debug.Log($"Orch: Pawn {SelectedPawn.PawnName} going to Tile {SelectedTile.Value}");
             // Move Pawn to clicked tile if its within their movement
             SelectedPawn.MovePawn(SelectedTile.Value);
         }

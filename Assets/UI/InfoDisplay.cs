@@ -7,16 +7,17 @@ public class InfoDisplay : MonoBehaviour
 {
     public TextMeshProUGUI hpDisplay;
     public Pawn pawn;
+
     void Start()
     {
         if (pawn && hpDisplay)
         {
-            hpDisplay.text = pawn.health.ToString();
+            hpDisplay.text = pawn.Health.ToString();
         }
     }
 
     void Update()
     {
-        hpDisplay.text = pawn.health.ToString();
+        hpDisplay.text = pawn.Health.ToString();
     }
 }

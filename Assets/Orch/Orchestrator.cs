@@ -15,16 +15,16 @@ using UnityEngine;
 // Note 2:
 // I'm still figuring out good naming conventions and stuff, but CLASSNAME_[Section Name] seems good for the 'modular' pieces
 
-// Note 3: 
+// Note 3:
 // I wrote 'modular' above because Modules are an actual thing that exists
 // The files in the "Parts" folder are not Modules
 // They are just sets of properties and methods that together are kind of self-contained
-// There is nothing special about the CLASSNAME file, its just another piece of the blob 
+// There is nothing special about the CLASSNAME file, its just another piece of the blob
 
-// Note 4: 
+// Note 4:
 // Unity will see all the pieces but only attach this file because its the only one where the class name and filename match
 
-// Note 5: 
+// Note 5:
 // You only declare what a partial class extends in one file, which in this case is "MonoBehaviour"
 // I could have done that in any of the files and it would work the same
 
@@ -40,9 +40,20 @@ public partial class Orchestrator : MonoBehaviour
     void Start()
     {
         // _selectPreview = GameObject.FindWithTag("SelectPreview").GetComponent<Image>();
-        _highlightGrid = GameObject.FindWithTag("HighlightGrid").GetComponent<HighlightGridController>();
+        _highlightGrid = GameObject
+            .FindWithTag("HighlightGrid")
+            .GetComponent<HighlightGridController>();
         MainCam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         PawnMoved.AddListener(DeselectPawn);
+    }
+
+    // Instead of having a clusterf of selection behavior, put a button in the UI that puts you in a SelectionState
+    // Then choose behavior based on that SelectionState
+    public enum SelectionState
+    {
+        Neutral,
+        InMovement,
+        InAttack,
     }
 
     // Apparently its important to destroy event listeners when you're done with a thing, prevents memory leaks

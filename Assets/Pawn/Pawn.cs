@@ -6,15 +6,15 @@ using UnityEngine.Tilemaps;
 
 public class Pawn : MonoBehaviour
 {
-    public string pawnName;
-    public int movement;
+    public string PawnName;
+    public int Movement;
 
-    public int health = 20;
+    public int Health = 20;
 
     private Orchestrator _orch;
     private Tilemap _terrain;
 
-    public Material highlightMaterial;
+    public Material HighlightMaterial;
     private Material _defaultMaterial;
     private SpriteRenderer _spriteRenderer;
 
@@ -37,12 +37,11 @@ public class Pawn : MonoBehaviour
 
     private void ToggleHighlight()
     {
-        Debug.Log($"Pawn: Highlighting {pawnName}");
+        Debug.Log($"Pawn: Highlighting {PawnName}");
         // TODO: This is a bad way to check if this is the currently selected pawn, but InstanceID was not working
-        if (_orch.SelectedPawn && _orch.SelectedPawn.pawnName == pawnName)
+        if (_orch.SelectedPawn && _orch.SelectedPawn.PawnName == PawnName)
         {
-            _spriteRenderer.material = highlightMaterial;
-
+            _spriteRenderer.material = HighlightMaterial;
         }
         else
         {
@@ -51,9 +50,9 @@ public class Pawn : MonoBehaviour
     }
 
     // Originally I used OnMouseDown, but it was making the hitbox wonky for selecting
-    public void GotClicked()
+    public void OnSelect()
     {
-        Debug.Log($"Pawn: {pawnName} clicked");
+        Debug.Log($"Pawn: {PawnName} clicked");
 
         _orch.SelectPawn(gameObject.GetComponent<Pawn>());
     }
@@ -67,7 +66,7 @@ public class Pawn : MonoBehaviour
 
     public void MovePawn(Vector3 cords)
     {
-        Debug.Log($"Pawn: {pawnName} moving to {cords}");
+        Debug.Log($"Pawn: {PawnName} moving to {cords}");
         var cellPosition = _terrain.WorldToCell(cords);
         var cellCenter = _terrain.GetCellCenterWorld(cellPosition);
         gameObject.transform.position = cellCenter;
@@ -76,18 +75,20 @@ public class Pawn : MonoBehaviour
 
     public void Attack(Pawn target)
     {
-        Debug.Log($"Pawn: {pawnName} is attacking {target.pawnName} with {_orch.SelectedCard.cardData.name} for {_orch.SelectedCard.cardData.damage}");
-        if (target.health - _orch.SelectedCard.cardData.damage > 20)
+        Debug.Log(
+            $"Pawn: {PawnName} is attacking {target.PawnName} with {_orch.SelectedCard.CardData.name} for {_orch.SelectedCard.CardData.Damage}"
+        );
+        if (target.Health - _orch.SelectedCard.CardData.Damage > 20)
         {
-            target.health = 20;
+            target.Health = 20;
         }
-        else if (target.health - _orch.SelectedCard.cardData.damage < 0)
+        else if (target.Health - _orch.SelectedCard.CardData.Damage < 0)
         {
-            target.health = 0;
+            target.Health = 0;
         }
         else
         {
-            target.health = target.health - _orch.SelectedCard.cardData.damage;
+            target.Health = target.Health - _orch.SelectedCard.CardData.Damage;
         }
     }
 }
