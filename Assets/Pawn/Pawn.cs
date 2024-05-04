@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
 public class Pawn : MonoBehaviour
@@ -11,19 +8,19 @@ public class Pawn : MonoBehaviour
 
     public int Health = 20;
 
-    private Orchestrator _orch;
+    private Orch _orch;
     private Tilemap _terrain;
 
-    public Material HighlightMaterial;
-    private Material _defaultMaterial;
+    public Material GlowMat;
+    private Material _defaultMat;
     private SpriteRenderer _spriteRenderer;
 
     void Start()
     {
-        _orch = GameObject.FindWithTag("Orch").GetComponent<Orchestrator>();
-        _terrain = GameObject.FindWithTag("Terrain").GetComponent<Tilemap>();
+        _orch = GameObject.FindWithTag("Orch").GetComponent<Orch>();
+        _terrain = _orch.Terrain;
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        _defaultMaterial = gameObject.GetComponent<SpriteRenderer>().material;
+        _defaultMat = gameObject.GetComponent<SpriteRenderer>().material;
 
         // Correct starting position to grid
         var position = gameObject.transform.position;
@@ -31,22 +28,26 @@ public class Pawn : MonoBehaviour
         var cellCenter = _terrain.GetCellCenterWorld(cellPosition);
         gameObject.transform.position = cellCenter;
 
-        _orch.PawnSelected.AddListener(ToggleHighlight);
-        _orch.PawnDeselected.AddListener(ToggleHighlight);
+        _orch.PawnManager.OnSelect.AddListener(ToggleHighlight);
+        _orch.PawnManager.OnSelect.AddListener(ToggleHighlight);
     }
 
     private void ToggleHighlight()
     {
         Debug.Log($"Pawn: Highlighting {PawnName}");
-        // TODO: This is a bad way to check if this is the currently selected pawn, but InstanceID was not working
-        if (_orch.SelectedPawn && _orch.SelectedPawn.PawnName == PawnName)
-        {
-            _spriteRenderer.material = HighlightMaterial;
-        }
-        else
-        {
-            _spriteRenderer.material = _defaultMaterial;
-        }
+
+        _spriteRenderer.material =
+            (
+                _orch.PawnManager.Selected
+                && _orch.PawnManager.Selected.GetInstanceID() == gameObject.GetInstanceID()
+            )
+                ? GlowMat
+                : _defaultMat;
+    }
+
+    public void Highlight(bool toggle)
+    {
+        _spriteRenderer.material = toggle ? GlowMat : _defaultMat;
     }
 
     // Originally I used OnMouseDown, but it was making the hitbox wonky for selecting
@@ -54,23 +55,7 @@ public class Pawn : MonoBehaviour
     {
         Debug.Log($"Pawn: {PawnName} clicked");
 
-        _orch.SelectPawn(gameObject.GetComponent<Pawn>());
-    }
-
-    // void OnMouseDown()
-    // {
-    //     Debug.Log($"Pawn: {pawnName} clicked");
-
-    //     _orch.SelectPawn(gameObject.GetComponent<Pawn>());
-    // }
-
-    public void MovePawn(Vector3 cords)
-    {
-        Debug.Log($"Pawn: {PawnName} moving to {cords}");
-        var cellPosition = _terrain.WorldToCell(cords);
-        var cellCenter = _terrain.GetCellCenterWorld(cellPosition);
-        gameObject.transform.position = cellCenter;
-        _orch.PawnMoved.Invoke();
+        _orch.PawnManager.Select(gameObject);
     }
 
     public void Attack(Pawn target)

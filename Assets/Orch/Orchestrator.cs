@@ -34,26 +34,23 @@ public partial class Orchestrator : MonoBehaviour
     private HighlightGridController _highlightGrid;
     public Camera MainCam { get; private set; }
 
-    // private Image _selectPreview;
-
+    // Instead of having a clusterf of selection behavior, put a button in the UI that puts you in a SelectionState
+    // Then choose behavior based on that SelectionState
+    // Naming is based on Command Pattern states
+    public enum CommandState
+    {
+        Continue,
+        Success,
+        Failure,
+    }
 
     void Start()
     {
-        // _selectPreview = GameObject.FindWithTag("SelectPreview").GetComponent<Image>();
         _highlightGrid = GameObject
             .FindWithTag("HighlightGrid")
             .GetComponent<HighlightGridController>();
         MainCam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         PawnMoved.AddListener(DeselectPawn);
-    }
-
-    // Instead of having a clusterf of selection behavior, put a button in the UI that puts you in a SelectionState
-    // Then choose behavior based on that SelectionState
-    public enum SelectionState
-    {
-        Neutral,
-        InMovement,
-        InAttack,
     }
 
     // Apparently its important to destroy event listeners when you're done with a thing, prevents memory leaks

@@ -15,15 +15,13 @@ public partial class Orchestrator
     {
         if (SelectedCard)
         {
-            if (SelectedCard.GetInstanceID() == card.GetInstanceID())
+            if (SelectedCard.gameObject.GetInstanceID() == card.gameObject.GetInstanceID())
             {
                 DeselectCard();
             }
             else
             {
                 Debug.Log($"Orch: Card {card.CardData.name} selected");
-
-                DeselectTile();
                 SelectedCard = card;
                 CardSelected.Invoke();
             }
