@@ -35,7 +35,7 @@ Note: Making the game in Unity was not actually a required part of this assignme
 
 ## How to Play
 
-Download the Zip File at https://github.com/ConnorGDevelopment/WW2KU/blob/main/Build.zip
-Run the application named "WW2KU - Rev2"
+1. Download the Zip File at https://github.com/ConnorGDevelopment/WW2KU/blob/main/Build.zip
+2. Run the application named "WW2KU - Rev2"
 
 
