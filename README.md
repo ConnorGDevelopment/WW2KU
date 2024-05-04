@@ -5,8 +5,11 @@ By Team Super Metal Deathcore Sunshine Go!
 ## Contributors
 
 Game Design and Concept: Dylan O'Donnell
+
 Opening Visuals and Title Screen: Noah Kimes
+
 Core Gameplay: Rev Guarino
+
 Game Audio and UI Sound Design: David Oyuke
 
 ## Assignment Breakdown for Academic Clarity
