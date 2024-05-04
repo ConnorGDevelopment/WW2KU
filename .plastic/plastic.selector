@@ -1,4 +1,0 @@
-repository "WW2KU@Reverend_Code@cloud"
-  path "/"
-    br "/main"
-    co "/main"

@@ -21,7 +21,7 @@ public class PawnManager : ItemManager
     {
         if (Selected.TryGetComponent<Pawn>(out Pawn selected))
         {
-            selected.Highlight(true);
+            selected.Highlight();
         }
         Debug.Log($"{ManagerName}: Highlighting {ItemCategory} {Selected.GetInstanceID()}");
     }
